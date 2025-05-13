@@ -312,13 +312,14 @@ public:
 	virtual void IgniteLifetime( float flFlameLifetime );
 	virtual void IgniteNumHitboxFires( int iNumHitBoxFires );
 	virtual void IgniteHitboxFireScale( float flHitboxFireScale );
-	virtual void Extinguish() { RemoveFlag( FL_ONFIRE ); }
+	virtual void Extinguish();
 	bool IsOnFire() { return ( (GetFlags() & FL_ONFIRE) != 0 ); }
 	void Scorch( int rate, int floor );
 	void InputIgnite( inputdata_t &inputdata );
 	void InputIgniteLifetime( inputdata_t &inputdata );
 	void InputIgniteNumHitboxFires( inputdata_t &inputdata );
 	void InputIgniteHitboxFireScale( inputdata_t &inputdata );
+	void InputExtinguish( inputdata_t &inputdata );
 	void InputBecomeRagdoll( inputdata_t &inputdata );
 
 	// Dissolve, returns true if the ragdoll has been created
@@ -443,6 +444,7 @@ protected:
 
 public:
 	COutputEvent m_OnIgnite;
+	COutputEvent m_OnExtinguish;
 
 private:
 	CStudioHdr			*m_pStudioHdr;

@@ -201,10 +201,12 @@ BEGIN_DATADESC( CBaseAnimating )
 	DEFINE_INPUTFUNC( FIELD_FLOAT, "IgniteLifetime", InputIgniteLifetime ),
 	DEFINE_INPUTFUNC( FIELD_INTEGER, "IgniteNumHitboxFires", InputIgniteNumHitboxFires ),
 	DEFINE_INPUTFUNC( FIELD_FLOAT, "IgniteHitboxFireScale", InputIgniteHitboxFireScale ),
+	DEFINE_INPUTFUNC( FIELD_VOID, "Extinguish", InputExtinguish ),
 	DEFINE_INPUTFUNC( FIELD_VOID, "BecomeRagdoll", InputBecomeRagdoll ),
 	DEFINE_INPUTFUNC( FIELD_STRING, "SetLightingOriginHack", InputSetLightingOriginRelative ),
 	DEFINE_INPUTFUNC( FIELD_STRING, "SetLightingOrigin", InputSetLightingOrigin ),
 	DEFINE_OUTPUT( m_OnIgnite, "OnIgnite" ),
+	DEFINE_OUTPUT( m_OnExtinguish, "OnExtinguish" ),
 
 	DEFINE_INPUT( m_fadeMinDist, FIELD_FLOAT, "fademindist" ),
 	DEFINE_INPUT( m_fadeMaxDist, FIELD_FLOAT, "fademaxdist" ),
@@ -3598,6 +3600,17 @@ void CBaseAnimating::IgniteHitboxFireScale( float flHitboxFireScale )
 	pFlame->SetHitboxFireScale( flHitboxFireScale );
 }
 
+void CBaseAnimating::Extinguish() {
+	if ( !IsOnFire() )
+		return;
+
+	// remove the OnFire flag
+	RemoveFlag(FL_ONFIRE);
+
+	// fire OnExtinguish output
+	m_OnExtinguish.FireOutput(this, this);
+}
+
 //-----------------------------------------------------------------------------
 // Fades out!
 //-----------------------------------------------------------------------------
@@ -3708,6 +3721,11 @@ void CBaseAnimating::InputIgniteHitboxFireScale( inputdata_t &inputdata )
 void CBaseAnimating::InputBecomeRagdoll( inputdata_t &inputdata )
 {
 	BecomeRagdollOnClient( vec3_origin );
+}
+
+void CBaseAnimating::InputExtinguish( inputdata_t &inputdata )
+{
+	Extinguish();
 }
 
 //-----------------------------------------------------------------------------
