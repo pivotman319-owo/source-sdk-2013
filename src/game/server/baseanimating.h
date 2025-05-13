@@ -313,6 +313,14 @@ public:
 	virtual void IgniteNumHitboxFires( int iNumHitBoxFires );
 	virtual void IgniteHitboxFireScale( float flHitboxFireScale );
 	virtual void Extinguish();
+
+	// VScript Bindings for Fire
+	virtual void ScriptIgnite(float flFlameLifetime = 30.0f, bool bNPCOnly = true, float flSize = 0.0f, bool bCalledByLevelDesigner = false) { Ignite(flFlameLifetime, bNPCOnly, flSize, bCalledByLevelDesigner); }
+	virtual void ScriptIgniteLifetime(float flFlameLifetime) { IgniteLifetime( flFlameLifetime ); }
+	virtual void ScriptIgniteNumHitboxFires(int iNumHitBoxFires) { IgniteNumHitboxFires(iNumHitBoxFires); }
+	virtual void ScriptIgniteHitboxFireScale(float flHitboxFireScale) { IgniteHitboxFireScale(flHitboxFireScale); }
+	virtual void ScriptExtinguish() { Extinguish(); }
+
 	bool IsOnFire() { return ( (GetFlags() & FL_ONFIRE) != 0 ); }
 	void Scorch( int rate, int floor );
 	void InputIgnite( inputdata_t &inputdata );
