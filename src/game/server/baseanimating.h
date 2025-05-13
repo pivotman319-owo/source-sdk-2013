@@ -315,7 +315,7 @@ public:
 	virtual void Extinguish();
 
 	// VScript Bindings for Fire
-	virtual void ScriptIgnite(float flFlameLifetime = 30.0f, bool bNPCOnly = true, float flSize = 0.0f, bool bCalledByLevelDesigner = false) { Ignite(flFlameLifetime, bNPCOnly, flSize, bCalledByLevelDesigner); }
+	virtual void ScriptIgnite(float flFlameLifetime, bool bNPCOnly, float flSize, bool bCalledByLevelDesigner = false) { Ignite(flFlameLifetime, bNPCOnly, flSize, bCalledByLevelDesigner); }
 	virtual void ScriptIgniteLifetime(float flFlameLifetime) { IgniteLifetime( flFlameLifetime ); }
 	virtual void ScriptIgniteNumHitboxFires(int iNumHitBoxFires) { IgniteNumHitboxFires(iNumHitBoxFires); }
 	virtual void ScriptIgniteHitboxFireScale(float flHitboxFireScale) { IgniteHitboxFireScale(flHitboxFireScale); }
