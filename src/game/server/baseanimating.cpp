@@ -3604,6 +3604,14 @@ void CBaseAnimating::Extinguish() {
 	if ( !IsOnFire() )
 		return;
 
+	// get the flame effect
+	CEntityFlame *pFlame = dynamic_cast<CEntityFlame*>( GetEffectEntity() );
+	if (pFlame)
+	{
+		pFlame->SetThink(&CBaseEntity::SUB_Remove);
+		pFlame->SetNextThink(gpGlobals->curtime + 0.1f);
+	}
+
 	// remove the OnFire flag
 	RemoveFlag(FL_ONFIRE);
 
