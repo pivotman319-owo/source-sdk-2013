@@ -21,7 +21,7 @@
 	{
 		"fieldName"		"HudHealth"
 		"xpos"	"16"
-		"ypos"	"426"HudPoisonDamageIndicator
+		"ypos"	"426"
 		"wide"	"130"
 		"tall"  "42"
 		"visible" "1"
@@ -34,7 +34,7 @@
 		"digit_xpos" "66"
 		"digit_ypos" "0"
 	}
-	
+
 	HudSuit [!$DECK]
 	{
 		"fieldName"		"HudSuit"
@@ -143,6 +143,66 @@
 		"digit_xpos" "42"
 		"digit_ypos" "0"
 	}
+	
+	HudSuitPower	[!$DECK]
+	{
+		"fieldName" "HudSuitPower"
+		"visible" "1"
+		"enabled" "1"
+		"xpos"	"16"
+		"ypos"	"420"
+		"wide"	"102"
+		"tall"	"48"
+		
+		"AuxPowerLowColor" "255 0 0 220"
+		"AuxPowerHighColor" "255 220 0 220"
+		"AuxPowerDisabledAlpha" "70"
+
+		"BarInsetX" "8"
+		"BarInsetY" "15"
+		"BarWidth" "92"
+		"BarHeight" "4"
+		"BarChunkWidth" "6" [!$DECK]
+		"BarChunkWidth" "7" [$DECK]
+		"BarChunkGap" "3"
+
+		"text_xpos" "8"
+		"text_ypos" "4"
+		"text2_xpos" "8"
+		"text2_ypos" "22"
+		"text2_gap" "10"
+
+		"PaintBackgroundType"	"2"
+	}
+	HudSuitPower	[$DECK]
+	{
+		"fieldName" "HudSuitPower"
+		"visible" "1"
+		"enabled" "1"
+		"xpos"	"16"
+		"ypos"	"386"
+		"wide"	"112"
+		"tall"	"54"
+		
+		"AuxPowerLowColor" "255 0 0 220"
+		"AuxPowerHighColor" "255 220 0 220"
+		"AuxPowerDisabledAlpha" "70"
+
+		"BarInsetX" "8"
+		"BarInsetY" "18"
+		"BarWidth" "102"
+		"BarHeight" "5"
+		"BarChunkWidth" "6"
+		"BarChunkGap" "3"
+
+		"text_xpos" "8"
+		"text_ypos" "4"
+		"text2_xpos" "8"
+		"text2_ypos" "26"
+		"text2_gap" "14"
+
+		"PaintBackgroundType"	"2"
+	}
 
 	HudPosture	[$WIN32]
 	{
@@ -170,74 +230,13 @@
 		"icon_xpos"	"10"
 		"icon_ypos" 	"2"
 	}
-
-	HudSuitPower	[!$DECK]
-	{
-		"fieldName" "HudSuitPower"
-		"visible" "1"
-		"enabled" "1"
-		"xpos"	"16"
-		"ypos"	"420"
-		"wide"	"102"
-		"tall"	"26"
-		
-		"AuxPowerLowColor" "255 0 0 220"
-		"AuxPowerHighColor" "255 220 0 220"
-		"AuxPowerDisabledAlpha" "70"
-
-		"BarInsetX" "8"
-		"BarInsetY" "15"
-		"BarWidth" "92"
-		"BarHeight" "4"
-		"BarChunkWidth" "6"
-		"BarChunkGap" "3"
-
-		"text_xpos" "8"
-		"text_ypos" "4"
-		"text2_xpos" "8"
-		"text2_ypos" "22"
-		"text2_gap" "10"
-
-		"PaintBackgroundType"	"2"
-	}
-	HudSuitPower	[$DECK]
-	{
-		"fieldName" "HudSuitPower"
-		"visible" "1"
-		"enabled" "1"
-		"xpos"	"16"
-		"ypos"	"386"
-		"wide"	"112"
-		"tall"	"32"
-		
-		"AuxPowerLowColor" "255 0 0 220"
-		"AuxPowerHighColor" "255 220 0 220"
-		"AuxPowerDisabledAlpha" "70"
-
-		"BarInsetX" "8"
-		"BarInsetY" "18"
-		"BarWidth" "102"
-		"BarHeight" "5"
-		"BarChunkWidth" "6" [!$DECK]
-		"BarChunkWidth" "7" [$DECK]
-		"BarChunkGap" "3"
-
-		"text_xpos" "8"
-		"text_ypos" "4"
-		"text2_xpos" "8"
-		"text2_ypos" "26"
-		"text2_gap" "14"
-
-		"PaintBackgroundType"	"2"
-	}
 	
 	HudFlashlight
 	{
 		"fieldName" "HudFlashlight"
 		"visible" "1"
 		"PaintBackgroundType"	"2"
-		"xpos"	"270"		[!$DECK]
-		"xpos"	"280"		[$DECK]
+		"xpos"	"270"		[$WIN32]
 		"ypos"	"444"		[!$DECK]
 		"ypos"	"436"		[$DECK]
 		"xpos_hidef"	"306"		[$X360]		// aligned to left
@@ -265,21 +264,6 @@
 		"BarChunkWidth" "3" [$DECK]
 		"BarChunkGap" "1"
 	}
-
-	HudLocator
-	{
-		"fieldName" "HudLocator"
-		"visible" "1"
-		"PaintBackgroundType"	"2"
-		"xpos"	"c8"	[$WIN32]
-		"ypos"	"r36"	[$WIN32]
-		"xpos"	"c-32"	[$X360]
-		"ypos_hidef"	"r52"	[$X360]
-		"ypos_lodef"	"r95"	[$X360]		// 52 is aligned to bottom of HudSuit
-		"wide"	"64"
-		"tall"  "24"
-	}
-
 	HudDamageIndicator
 	{
 		"fieldName" "HudDamageIndicator"
@@ -307,7 +291,6 @@
 		"DashHeight" "6"	[$X360]		
 		"BorderThickness" "88"
 	}
-
 	HudWeaponSelection
 	{
 		"fieldName" "HudWeaponSelection"
@@ -322,10 +305,8 @@
 		"MediumBoxTall_hidef"	"50"
 		"MediumBoxWide_lodef"	"74"
 		"MediumBoxTall_lodef"	"50"
-		"LargeBoxWide" "132" [$DECK]
-		"LargeBoxTall" "92" [$DECK]
-		"LargeBoxWide" "112" [!$DECK]
-		"LargeBoxTall" "84" [!$DECK]
+		"LargeBoxWide" "112"
+		"LargeBoxTall" "84"
 		"BoxGap" "8"
 		"SelectionNumberXPos" "4"
 		"SelectionNumberYPos" "4"
@@ -392,7 +373,7 @@
 		"fieldName" "HudMessage"
 		"visible" "1"
 		"enabled" "1"
-		"wide"	 "640"
+		"wide"	 "f0"
 		"tall"	 "480"
 	}
 
@@ -408,12 +389,11 @@
 	HudCloseCaption
 	{
 		"fieldName" "HudCloseCaption"
-		"visible"	"0"
+		"visible"	"1"
 		"enabled"	"1"
 		"xpos"		"c-250"
 		"ypos"		"276"	[$WIN32]
-		"ypos_hidef"	"236"	[$X360]
-		"ypos_lodef"	"206"	[$X360]			//236
+		"ypos"		"236"	[$X360]
 		"wide"		"500"
 		"tall"		"136"	[$WIN32]
 		"tall"		"176"	[$X360]
@@ -425,7 +405,7 @@
 		"ItemFadeInTime"	"0.15"	// Once ItemHiddenTime is finished, takes this much longer to fade in
 		"ItemFadeOutTime"	"0.3"
 		"topoffset"		"0"		[$WIN32]
-		"topoffset"		"40"	[$X360]
+		"topoffset"		"0"	[$X360]
 	}
 
 	HudChat
@@ -504,24 +484,22 @@
 
 	HudHintDisplay
 	{
-		"fieldName"	"HudHintDisplay"
-		"visible"	"0"
-		"enabled" "1"
-		"Alpha"		"0"		// Remove this to enable hint hud element
-		"xpos"	"r120"	[$WIN32]
-		"ypos"	"r340"	[$WIN32]
+		"fieldName"				"HudHintDisplay"
+		"visible"				"0"
+		"enabled"				"1"
+		"xpos"					"c-240"
+		"ypos"					"c60"
 		"xpos"	"r148"	[$X360]
 		"ypos"	"r338"	[$X360]
-		"wide"	"100"
-		"tall"	"200"
-		"text_xpos"	"8"
-		"text_ypos"	"8"
-		"text_xgap"	"8"
-		"text_ygap"	"8"
-		"TextColor"	"255 170 0 220"
-
-		"PaintBackgroundType"	"2"
-	}
+		"wide"					"480"
+		"tall"					"100"
+		"HintSize"				"1"
+		"text_xpos"				"8"
+		"text_ypos"				"8"
+		"center_x"				"0"	// center text horizontally
+		"center_y"				"-1"	// align text on the bottom
+		"paintbackground"		"0"
+	}	
 
 	HudHintKeyDisplay
 	{
@@ -580,6 +558,7 @@
 
 		"PaintBackgroundType"	"2"
 	}
+
 
 	HudPoisonDamageIndicator	[!$DECK]
 	{
@@ -688,24 +667,6 @@
 		"LeftTitleY"	"422"
 		"RightTitleY"	"422"
 	}
-	"HudChatHistory"
-	{
-		"ControlName"		"RichText"
-		"fieldName"		"HudChatHistory"
-		"xpos"			"10"
-		"ypos"			"290"
-		"wide"	 		"300"
-		"tall"			 "75"
-		"wrap"			"1"
-		"autoResize"		"1"
-		"pinCorner"		"1"
-		"visible"		"0"
-		"enabled"		"1"
-		"labelText"		""
-		"textAlignment"		"south-west"
-		"font"			"Default"
-		"maxchars"		"-1"
-	}
 
 	AchievementNotificationPanel	
 	{
@@ -718,4 +679,17 @@
 		"wide"					"f60"	[$X360]
 		"tall"					"100"
 	}
+
+	CHudVote
+	{
+		"fieldName"		"CHudVote"
+		"xpos"			"0"			
+		"ypos"			"0"
+		"wide"			"640"
+		"tall"			"480"
+		"visible"		"1"
+		"enabled"		"1"
+		"bgcolor_override"	"0 0 0 0"
+		"PaintBackgroundType"	"0" // rounded corners
+	}	
 }
