@@ -3605,23 +3605,24 @@ void CBaseAnimating::IgniteHitboxFireScale( float flHitboxFireScale )
 	pFlame->SetHitboxFireScale( flHitboxFireScale );
 }
 
-void CBaseAnimating::Extinguish() {
+void CBaseAnimating::Extinguish()
+{
 	if ( !IsOnFire() )
 		return;
 
 	// get the flame effect
 	CEntityFlame *pFlame = dynamic_cast<CEntityFlame*>( GetEffectEntity() );
-	if (pFlame)
+	if ( pFlame )
 	{
-		pFlame->SetThink(&CBaseEntity::SUB_Remove);
-		pFlame->SetNextThink(gpGlobals->curtime + 0.1f);
+		pFlame->SetThink( &CBaseEntity::SUB_Remove );
+		pFlame->SetNextThink( gpGlobals->curtime + 0.1f );
 	}
 
 	// remove the OnFire flag
-	RemoveFlag(FL_ONFIRE);
+	RemoveFlag( FL_ONFIRE );
 
 	// fire OnExtinguish output
-	m_OnExtinguish.FireOutput(this, this);
+	m_OnExtinguish.FireOutput( this, this );
 }
 
 //-----------------------------------------------------------------------------
