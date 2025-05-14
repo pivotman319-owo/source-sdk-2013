@@ -1,0 +1,16 @@
+// Setup custom controller
+exec joystick.cfg
+
+// run a user script file if present
+exec autoexec.cfg
+
+//
+// stuff command line statements
+//
+stuffcmds
+
+// Disable Local Network Backdoor to Prevent Crash
+cl_localnetworkbackdoor 0
+
+// display the startup level
+startupmenu
