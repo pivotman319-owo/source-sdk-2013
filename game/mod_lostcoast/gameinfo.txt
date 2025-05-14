@@ -1,0 +1,68 @@
+"GameInfo"
+{
+	game 		"My First Half-Life 2 Mod"
+	title 		"HALF-LIFE'"
+
+	type		singleplayer_only
+
+	gamelogo 0
+
+	FileSystem
+	{
+		SteamAppId				243750
+		
+		//
+		// Setup engine search paths.
+		//
+		// If a search path contains "_english", and the current language is not english, then
+		// another search path will be inserted above the english one by replacing "_english" with
+		// the appropriate language.
+		//
+		// To debug how the engine has parsed this file, type "path" at the console.
+		//
+		// Search paths are relative to the base directory, which is where hl2.exe is found.
+		//
+		// |gameinfo_path| points at the directory where gameinfo.txt is.
+		// |all_source_engine_paths| points at the directory cintaining HL2 shared content.
+		//
+		SearchPaths
+		{
+			// First, mount all user customizations.  This will search for VPKs and subfolders
+			// and mount them in alphabetical order.  The easiest way to distribute a mod is to
+			// pack up the custom content into a VPK.  To "install" a mod, just drop it in this
+			// folder.
+			//
+			// Note that this folder is scanned only when the game is booted.
+			game+mod			mod_hl2/custom/*
+
+			// Now search loose files.  We'll set the directory containing the gameinfo.txt file
+			// as the first "mod" search path (after any user customizations).  This is also the one
+			// that's used when writing to the "mod" path.
+			mod+mod_write		|gameinfo_path|.
+			game+game_write		|gameinfo_path|.
+			default_write_path	|gameinfo_path|.
+			gamebin				|gameinfo_path|bin
+
+			// We search VPK files before ordinary folders, because most files will be found in
+			// VPK and we can avoid making thousands of file system calls to attempt to open files
+			// in folders where they don't exist.  (Searching a VPK is much faster than making an operating
+			// system call.)
+
+			game				|appid_243750|hl2_complete/hl2_complete_textures.vpk
+			game				|appid_243750|hl2_complete/hl2_complete_sound_vo_english.vpk
+			game				|appid_243750|hl2_complete/hl2_complete_sound_misc.vpk
+			game				|appid_243750|hl2_complete/hl2_complete_misc.vpk
+
+			game				|appid_220|hl2/hl2_pak.vpk
+			game				|appid_243750|hl2/hl2_textures.vpk
+			game				|appid_243750|hl2/hl2_sound_vo_english.vpk
+			game				|appid_243750|hl2/hl2_sound_misc.vpk
+			game				|appid_243750|hl2/hl2_misc.vpk
+
+			// Last, mount in shared HL2 loose files
+			game				|appid_243750|hl2_complete
+			game				|appid_243750|hl2
+			platform			|appid_243750|platform
+		}
+	}
+}
