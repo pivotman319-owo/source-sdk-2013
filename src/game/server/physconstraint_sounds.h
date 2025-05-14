@@ -187,6 +187,10 @@ protected:
 Vector VelocitySampler::GetRelativeVelocity( IPhysicsObject *pObj, IPhysicsObject *pReferenceFrame )
 {
 	Vector childVelocity, parentVelocity;
+
+	if (!pObj)
+		return { 0,0,0 };
+
 	pObj->GetImplicitVelocity( &childVelocity, NULL );
 	pReferenceFrame->GetImplicitVelocity(&parentVelocity, NULL);
 
