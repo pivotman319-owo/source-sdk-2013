@@ -12,5 +12,8 @@ stuffcmds
 // Disable Local Network Backdoor to Prevent Crash
 cl_localnetworkbackdoor 0
 
+// Increase total number of string commands to execute
+sv_quota_stringcmdspersecond 512
+
 // display the startup level
 startupmenu
