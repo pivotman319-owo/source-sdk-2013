@@ -231,39 +231,6 @@
 		"icon_ypos" 	"2"
 	}
 	
-	HudFlashlight
-	{
-		"fieldName" "HudFlashlight"
-		"visible" "1"
-		"PaintBackgroundType"	"2"
-		"xpos"	"270"		[$WIN32]
-		"ypos"	"444"		[!$DECK]
-		"ypos"	"436"		[$DECK]
-		"xpos_hidef"	"306"		[$X360]		// aligned to left
-		"xpos_lodef"	"c-18"		[$X360]		// centered in screen
-		"ypos"	"428"		[$X360]				
-		"tall"  "24" [!$DECK]
-		"tall"  "30" [$DECK]
-		"wide"	"36" [!$DECK]
-		"wide"	"46" [$DECK]
-		"font"	"WeaponIconsSmall" [!$DECK]
-		"font"	"FlashlightDeck" [$DECK]
-		
-		"icon_xpos"	"4"
-		"icon_ypos" "-8" [!$DECK]
-		"icon_ypos" "-12"  [$DECK]
-		
-		"BarInsetX" "4"
-		"BarInsetY" "18" [!$DECK]
-		"BarInsetY" "22" [$DECK]
-		"BarWidth" "28" [!$DECK]
-		"BarWidth" "36" [$DECK]
-		"BarHeight" "2" [!$DECK]
-		"BarChunkWidth" "2" [!$DECK]
-		"BarHeight" "3" [$DECK]
-		"BarChunkWidth" "3" [$DECK]
-		"BarChunkGap" "1"
-	}
 	HudDamageIndicator
 	{
 		"fieldName" "HudDamageIndicator"
@@ -306,7 +273,7 @@
 		"MediumBoxWide_lodef"	"74"
 		"MediumBoxTall_lodef"	"50"
 		"LargeBoxWide" "112"
-		"LargeBoxTall" "80"
+		"LargeBoxTall" "84"
 		"BoxGap" "8"
 		"SelectionNumberXPos" "4"
 		"SelectionNumberYPos" "4"
@@ -326,15 +293,6 @@
 	HudDeathNotice
 	{
 		"fieldName" "HudDeathNotice"
-		"visible" "1"
-		"enabled" "1"
-		"wide"	 "640"
-		"tall"	 "480"
-	}
-
-	HudVehicle
-	{
-		"fieldName" "HudVehicle"
 		"visible" "1"
 		"enabled" "1"
 		"wide"	 "640"
@@ -566,7 +524,7 @@
 		"visible"	"0"
 		"enabled" "1"
 		"xpos"	"16"
-		"ypos"	"346"
+		"ypos"	"338"
 		"wide"	"136"
 		"tall"	"38"
 		"text_xpos"	"8"
@@ -581,7 +539,7 @@
 		"visible"	"0"
 		"enabled" "1"
 		"xpos"	"16"
-		"ypos"	"300"
+		"ypos"	"262"
 		"wide"	"190"
 		"tall"	"42"
 		"text_xpos"	"8"
