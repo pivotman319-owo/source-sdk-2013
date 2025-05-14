@@ -63,7 +63,7 @@
 
 			// Last, mount in shared HL2 loose files
 			game				|appid_243750|hl2_complete
-			game				|appid_243750|lostcoast
+			game				|appid_220|lostcoast
 			game				|appid_243750|hl2
 			platform			|appid_243750|platform
 		}
