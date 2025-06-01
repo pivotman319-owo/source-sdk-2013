@@ -1345,6 +1345,8 @@ Activity CNPC_Combine::NPC_TranslateActivity( Activity eNewActivity )
 		return ( Activity )ACT_RUN_AIM_RIFLE;
 	if ( eNewActivity == ACT_RUN_AIM_AR2_STIMULATED)
 		return ( Activity )ACT_RUN_AIM_RIFLE;
+	if ( eNewActivity == ACT_WALK_AR2 )
+		return ( Activity )ACT_WALK_RIFLE;
 	if ( eNewActivity == ACT_WALK_AIM_AR2 )
 		return ( Activity )ACT_WALK_AIM_RIFLE;
 	if ( eNewActivity == ACT_IDLE_ANGRY_AR2 )
