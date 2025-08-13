@@ -1,0 +1,12 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/male_wolf/eyes/eyeE"
+	
+	$selfillum 1
+//	$selfillumtint "[.9 .8 .8]"
+	$selfillumtint "[2 1.8 1.8]"
+
+	$envmap				"models/player/shared/eye-reflection-cubemap-" 
+	$envmaptint			"[.5 .5 .5]"
+
+}

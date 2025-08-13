@@ -1,0 +1,1 @@
+mod_tf_sp_win64 -w 1920 -h 1080 -sw -noborder -noscripting -dev +developer 2

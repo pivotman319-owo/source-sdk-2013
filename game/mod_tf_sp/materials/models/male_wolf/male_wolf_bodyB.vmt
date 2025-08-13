@@ -1,0 +1,30 @@
+VertexlitGeneric
+{
+	"$basetexture" "models/male_wolf/male_wolf_bodyB"
+	"$bumpmap" "models/male_wolf/male_wolf_bodyB_n"
+	
+	// no lizard lightwarps YET
+	// "$lightwarptexture" "models/female_lizard/acc/Anisotropic"
+	
+	// tf2 shading
+	"$lightwarptexture" "models/player/shared/pyro_lightwarp_high"
+	"$phongfresnelranges"	"[.3 1 8]"
+	"$halflambert" "0"
+	
+	// SFM AO
+	"$ambientocclusion" "1"
+	
+	// $nocull 1
+	
+	// $halflambert 1
+
+	$phong	1
+	$phongboost	0
+	// $phongfresnelranges	"[.02 .1 5]"
+	// $phongexponent	22
+	// $phongtint	"[1 .5 .2]"
+	
+	// $rimlight 1
+	// $rimlightexponent 55	
+	// $rimlightboost .1
+}

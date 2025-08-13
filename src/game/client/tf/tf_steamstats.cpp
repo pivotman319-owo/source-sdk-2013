@@ -287,6 +287,7 @@ void CTFSteamStats::UploadStats()
 			steamapicontext->SteamUserStats()->SetStat( szStatName, classStats.maxMVM.m_iStat[g_SteamStats[iStat].iStat] );
 		}
 
+#ifndef TF_SP
 		// Set class specific stats:
 		StatMap_t* pClassStatMap = g_SteamStats_Class[iClass];
 		if ( pClassStatMap )
@@ -313,6 +314,7 @@ void CTFSteamStats::UploadStats()
 			}
 			while ( pClassStatMap[iStat].pszName );
 		}
+#endif
 	}
 
 	// Stomp local steam context stats with those in the stat panel.

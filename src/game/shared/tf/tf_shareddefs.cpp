@@ -20,7 +20,10 @@ const char *g_aTeamNames[TF_TEAM_COUNT] =
 	"Unassigned",
 	"Spectator",
 	"Red",
-	"Blue"
+	"Blue",
+#ifdef TF_SP
+	"OutOfTime"
+#endif
 };
 
 color32 g_aTeamColors[TF_TEAM_COUNT] = 
@@ -28,7 +31,8 @@ color32 g_aTeamColors[TF_TEAM_COUNT] =
 	{ 0, 0, 0, 0 },
 	{ 0, 0, 0, 0 },
 	{ 255, 0, 0, 0 },
-	{ 0, 0, 255, 0 }
+	{ 0, 0, 255, 0 },
+	{ 255, 0, 255, 0 }
 };
 
 //-----------------------------------------------------------------------------
@@ -48,6 +52,9 @@ const char *g_aPlayerClassNames[TF_CLASS_MENU_BUTTONS] =
 	"#TF_Class_Name_Spy",
 	"#TF_Class_Name_Engineer",
 	"#TF_Class_Name_Civilian",
+#ifdef TF_SP
+	"#TF_Class_Name_OutOfTime",
+#endif
 	"",
 	"#TF_Random"
 };
@@ -65,6 +72,9 @@ const char *g_aPlayerClassNames_NonLocalized[TF_CLASS_MENU_BUTTONS] =
 	"Spy",
 	"Engineer",
 	"Civilian",
+#ifdef TF_SP
+	"Loxi",
+#endif
 	"",
 	"Random"
 };
@@ -82,6 +92,9 @@ const char *g_aRawPlayerClassNamesShort[TF_CLASS_MENU_BUTTONS] =
 	"spy",
 	"engineer",
 	"civilian",
+#ifdef TF_SP
+	"loxi",
+#endif
 	"",
 	"random"
 };
@@ -99,6 +112,9 @@ const char *g_aRawPlayerClassNames[TF_CLASS_MENU_BUTTONS] =
 	"spy",
 	"engineer",
 	"civilian",
+#ifdef TF_SP
+	"loxi",
+#endif
 	"",
 	"random"
 };
@@ -116,6 +132,9 @@ const char g_szBotModels[][ MAX_PATH ] =
 	"models/bots/pyro/bot_pyro.mdl",
 	"models/bots/spy/bot_spy.mdl",
 	"models/bots/engineer/bot_engineer.mdl",
+#ifdef TF_SP
+	"models/bots/loxi/bot_loxi.mdl",
+#endif
 };
 
 const char g_szPlayerRobotModels[][MAX_PATH] =
@@ -131,6 +150,9 @@ const char g_szPlayerRobotModels[][MAX_PATH] =
 	"models/bots/pyro/bot_pyro_human_anim.mdl",
 	"models/bots/spy/bot_spy_human_anims.mdl",
 	"models/bots/engineer/bot_engineer_human_anim.mdl",
+#ifdef TF_SP
+	"models/bots/loxi/bot_loxi_human_anim.mdl",
+#endif
 };
 
 const char g_szBotBossModels[][ MAX_PATH ] = 
@@ -146,6 +168,9 @@ const char g_szBotBossModels[][ MAX_PATH ] =
 	"models/bots/pyro_boss/bot_pyro_boss.mdl",
 	"models/bots/spy/bot_spy.mdl",
 	"models/bots/engineer/bot_engineer.mdl",
+#ifdef TF_SP
+	"models/bots/loxi/bot_loxi.mdl",
+#endif
 };
 
 const char g_szBotBossSentryBusterModel[ MAX_PATH ] = "models/bots/demo/bot_sentry_buster.mdl";
@@ -225,9 +250,12 @@ int iRemapIndexToClass[TF_CLASS_MENU_BUTTONS] =
 		TF_CLASS_MEDIC,
 		TF_CLASS_SNIPER,
 		TF_CLASS_SPY,
+#ifdef TF_SP
+		TF_CLASS_LOXI,
+#endif
 		0,
 		0,
-		TF_CLASS_RANDOM
+		TF_CLASS_RANDOM,
 };
 
 int GetRemappedMenuIndexForClass( int iClass )
@@ -472,6 +500,9 @@ static const char *s_aGameTypeNames[] =
 	"#Gametype_RobotDestruction",
 	"#GameType_Passtime",
 	"#GameType_PlayerDestruction",
+#ifdef TF_SP
+	"#GameType_Singleplayer",
+#endif
 };
 COMPILE_TIME_ASSERT( TF_GAMETYPE_COUNT == ARRAYSIZE( s_aGameTypeNames ) );
 
@@ -490,7 +521,10 @@ static const char *s_aEnumGameTypeName[] =
 	"TF_GAMETYPE_MVM",
 	"TF_GAMETYPE_RD",
 	"TF_GAMETYPE_PASSTIME",
-	"TF_GAMETYPE_PD"
+	"TF_GAMETYPE_PD",
+#ifdef TF_SP
+	"TF_GAMETYPE_SP",
+#endif
 };
 COMPILE_TIME_ASSERT( TF_GAMETYPE_COUNT == ARRAYSIZE( s_aEnumGameTypeName ) );
 
@@ -708,6 +742,7 @@ const char *g_aWeaponNames[] =
 	"TF_WEAPON_JAR_GAS",
 	"TF_WEAPON_GRENADE_JAR_GAS",
 	"TF_WEPON_FLAME_BALL",
+	"TF_WEAPON_RAYGUN_SINGLEPLAYER",
 
 };
 COMPILE_TIME_ASSERT( ARRAYSIZE( g_aWeaponNames ) == TF_WEAPON_COUNT );
@@ -824,6 +859,7 @@ int g_aWeaponDamageTypes[] =
 	DMG_GENERIC, // TF_WEAPON_JAR_GAS
 	DMG_GENERIC, // TF_WEAPON_GRENADE_JAR_GAS
 	DMG_GENERIC | DMG_PREVENT_PHYSICS_FORCE, // TF_WEAPON_FLAME_BALL
+	DMG_BULLET | DMG_USEDISTANCEMOD | DMG_NOCLOSEDISTANCEMOD,	// TF_WEAPON_RAYGUN_SINGLEPLAYER,
 
 };
 
@@ -1460,7 +1496,7 @@ void LoadObjectInfos( IBaseFileSystem *pFileSystem )
 			// Does it make sense to call the below Steam API so it'll force a validation next startup time?
 			// Need to verify it's real corruption and not someone dorking around with their objects.txt file...
 			//
-			// From Martin Otten: If you have a file on disc and you’re 100% sure it’s
+			// From Martin Otten: If you have a file on disc and you're 100% sure it's
 			//  corrupt, call ISteamApps::MarkContentCorrupt( false ), before you shutdown
 			//  the game. This will cause a content validation in Steam.
 
@@ -1637,23 +1673,29 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"tf_weapon_shotgun_hwg",	// TF_CLASS_HEAVYWEAPONS,
 			"tf_weapon_shotgun_pyro",	// TF_CLASS_PYRO,
 			"",							// TF_CLASS_SPY,
-			"tf_weapon_shotgun_primary",// TF_CLASS_ENGINEER,		
+			"tf_weapon_shotgun_primary",// TF_CLASS_ENGINEER,	
+#ifdef TF_SP
+			"tf_weapon_shotgun_hwg",	// TF_CLASS_LOXI,	
+#endif
 		}
 	},
 
 	{
 		"tf_weapon_pistol",
 		{
-			"",							// TF_CLASS_UNDEFINED = 0,
-			"tf_weapon_pistol_scout",	// TF_CLASS_SCOUT,
-			"",							// TF_CLASS_SNIPER,
-			"",							// TF_CLASS_SOLDIER,
-			"",							// TF_CLASS_DEMOMAN,
-			"",							// TF_CLASS_MEDIC,
-			"",							// TF_CLASS_HEAVYWEAPONS,
-			"",							// TF_CLASS_PYRO,
-			"",							// TF_CLASS_SPY,
-			"tf_weapon_pistol",			// TF_CLASS_ENGINEER,		
+			"",											// TF_CLASS_UNDEFINED = 0,
+			"tf_weapon_pistol_scout",					// TF_CLASS_SCOUT,
+			"",											// TF_CLASS_SNIPER,
+			"",											// TF_CLASS_SOLDIER,
+			"",											// TF_CLASS_DEMOMAN,
+			"",											// TF_CLASS_MEDIC,
+			"",											// TF_CLASS_HEAVYWEAPONS,
+			"",											// TF_CLASS_PYRO,
+			"",											// TF_CLASS_SPY,
+			"tf_weapon_pistol",							// TF_CLASS_ENGINEER,	
+#ifdef TF_SP
+			"",			// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 
@@ -1669,7 +1711,10 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"",							// TF_CLASS_HEAVYWEAPONS,
 			"",							// TF_CLASS_PYRO,
 			"",							// TF_CLASS_SPY,
-			"",							// TF_CLASS_ENGINEER,		
+			"",							// TF_CLASS_ENGINEER,	
+#ifdef TF_SP
+			"",							// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 	{
@@ -1685,6 +1730,9 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"",							// TF_CLASS_PYRO,
 			"",							// TF_CLASS_SPY,
 			"",							// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+			"",							// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 	{
@@ -1700,6 +1748,9 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"tf_weapon_fireaxe",		// TF_CLASS_PYRO,
 			"tf_weapon_knife",			// TF_CLASS_SPY,
 			"tf_weapon_wrench",			// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+			"tf_weapon_fireaxe",		// TF_CLASS_LOXI,				Temporary. Same workaround as Heavy.
+#endif
 		}
 	},
 	{
@@ -1715,6 +1766,9 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"tf_weapon_throwable_secondary",			// TF_CLASS_PYRO,
 			"tf_weapon_throwable_secondary",			// TF_CLASS_SPY,
 			"tf_weapon_throwable_secondary",			// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+			"tf_weapon_throwable_secondary",			// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 	{
@@ -1730,6 +1784,9 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"",			// TF_CLASS_PYRO,
 			""			// TF_CLASS_SPY,
 			"",			// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+			"",			// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 	{
@@ -1745,6 +1802,9 @@ wpntranslation_class_weapons_t pszWpnEntTranslationList[] =
 			"",			// TF_CLASS_PYRO,
 			"tf_weapon_revolver",				// TF_CLASS_SPY,
 			"tf_weapon_revolver_secondary",		// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+			"",		// TF_CLASS_LOXI,		
+#endif
 		}
 	},
 };
@@ -1838,6 +1898,13 @@ const char *g_pszInvasionMaps[] =
 	"maps/pd_watergate.bsp"
 };
 
+#ifdef TF_SP
+const char* g_pszOutOfTimeMaps[] =
+{
+	"maps/sdk_vehicles.bsp"
+};
+#endif
+
 bool IsPlayingInvasionMap( void )
 {
 	const char *pszCurrentMap = engine->GetLevelName();
@@ -1851,6 +1918,21 @@ bool IsPlayingInvasionMap( void )
 	return false;
 }
 
+#ifdef TF_SP
+bool IsPlayingSPMap( void )
+{
+	const char *pszCurrentMap = engine->GetLevelName();
+
+	for ( int i = 0; i < ARRAYSIZE( g_pszOutOfTimeMaps ); i++ )
+	{
+		if ( FStrEq( g_pszOutOfTimeMaps[i], pszCurrentMap ) )
+			return true;
+	}
+
+	return false;
+}
+#endif
+
 const char *g_pszClassIcons[SCOREBOARD_CLASS_ICONS] =
 {
 	"",
@@ -1863,6 +1945,9 @@ const char *g_pszClassIcons[SCOREBOARD_CLASS_ICONS] =
 	"../hud/leaderboard_class_pyro",
 	"../hud/leaderboard_class_spy",
 	"../hud/leaderboard_class_engineer",
+#ifdef TF_SP
+	"../hud/leaderboard_class_loxi",
+#endif
 	"../hud/leaderboard_class_scout_d",
 	"../hud/leaderboard_class_sniper_d",
 	"../hud/leaderboard_class_soldier_d",
@@ -1872,6 +1957,9 @@ const char *g_pszClassIcons[SCOREBOARD_CLASS_ICONS] =
 	"../hud/leaderboard_class_pyro_d",
 	"../hud/leaderboard_class_spy_d",
 	"../hud/leaderboard_class_engineer_d",
+#ifdef TF_SP
+	"../hud/leaderboard_class_loxi_d",
+#endif
 };
 
 const char *g_pszClassIconsAlt[SCOREBOARD_CLASS_ICONS] =
@@ -1886,6 +1974,9 @@ const char *g_pszClassIconsAlt[SCOREBOARD_CLASS_ICONS] =
 	"class_icons/class_icon_orange_pyro",
 	"class_icons/class_icon_orange_spy",
 	"class_icons/class_icon_orange_engineer",
+#ifdef TF_SP
+	"class_icons/class_icon_orange_loxi",
+#endif
 	"class_icons/class_icon_orange_scout_d",
 	"class_icons/class_icon_orange_sniper_d",
 	"class_icons/class_icon_orange_soldier_d",
@@ -1895,6 +1986,9 @@ const char *g_pszClassIconsAlt[SCOREBOARD_CLASS_ICONS] =
 	"class_icons/class_icon_orange_pyro_d",
 	"class_icons/class_icon_orange_spy_d",
 	"class_icons/class_icon_orange_engineer_d",
+#ifdef TF_SP
+	"class_icons/class_icon_orange_loxi_d",
+#endif
 };
 
 const char *g_pszItemClassImagesRed[] =
@@ -1909,6 +2003,9 @@ const char *g_pszItemClassImagesRed[] =
 	"class_portraits/pyro",			// TF_CLASS_PYRO,
 	"class_portraits/spy",			// TF_CLASS_SPY,
 	"class_portraits/engineer",		// TF_CLASS_ENGINEER,
+#ifdef TF_SP
+	"class_portraits/all_class",		// TF_CLASS_LOXI,
+#endif
 	"class_portraits/scout_grey",		// TF_CLASS_SCOUT,			
 	"class_portraits/sniper_grey",		// TF_CLASS_SNIPER,
 	"class_portraits/soldier_grey",		// TF_CLASS_SOLDIER,
@@ -1918,6 +2015,9 @@ const char *g_pszItemClassImagesRed[] =
 	"class_portraits/pyro_grey",		// TF_CLASS_PYRO,
 	"class_portraits/spy_grey",			// TF_CLASS_SPY,
 	"class_portraits/engineer_grey",	// TF_CLASS_ENGINEER,
+#ifdef TF_SP
+	"class_portraits/all_class",		// TF_CLASS_LOXI,
+#endif
 };
 
 const char *g_pszItemClassImagesBlue[] =
@@ -1932,6 +2032,9 @@ const char *g_pszItemClassImagesBlue[] =
 	"class_portraits/pyro_blue",		// TF_CLASS_PYRO,
 	"class_portraits/spy_blue",			// TF_CLASS_SPY,
 	"class_portraits/engineer_blue",	// TF_CLASS_ENGINEER,
+#ifdef TF_SP
+	"class_portraits/all_class",			// TF_CLASS_LOXI,
+#endif
 	"class_portraits/scout_blue_grey",		// TF_CLASS_SCOUT,			
 	"class_portraits/sniper_blue_grey",		// TF_CLASS_SNIPER,
 	"class_portraits/soldier_blue_grey",	// TF_CLASS_SOLDIER,
@@ -1941,6 +2044,9 @@ const char *g_pszItemClassImagesBlue[] =
 	"class_portraits/pyro_blue_grey",		// TF_CLASS_PYRO,
 	"class_portraits/spy_blue_grey",		// TF_CLASS_SPY,
 	"class_portraits/engineer_blue_grey",	// TF_CLASS_ENGINEER,
+#ifdef TF_SP
+	"class_portraits/all_class",		// TF_CLASS_LOXI,
+#endif
 };
 
 const char *g_pszCompetitiveMedalImages[] =

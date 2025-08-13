@@ -178,6 +178,32 @@ const LoadoutPanelPositioningInstance g_LoadoutPanelPositioning_Engineer =
 	}
 };
 
+const LoadoutPanelPositioningInstance g_LoadoutPanelPositioning_Loxi =
+{
+	{
+		1,	// LOADOUT_POSITION_PRIMARY = 0,
+		2,	// LOADOUT_POSITION_SECONDARY,
+		3,	// LOADOUT_POSITION_MELEE,
+		4,	// LOADOUT_POSITION_UTILITY,  // STAGING ONLY
+		0,	// LOADOUT_POSITION_BUILDING,
+		0,	// LOADOUT_POSITION_PDA,
+		0,	// LOADOUT_POSITION_PDA2,
+		5,	// LOADOUT_POSITION_HEAD,
+		6,	// LOADOUT_POSITION_MISC,
+		8,	// LOADOUT_POSITION_ACTION,
+		7,	// LOADOUT_POSITION_MISC2,
+		9,	// LOADOUT_POSITION_TAUNT,
+		10,	// LOADOUT_POSITION_TAUNT2,
+		11,	// LOADOUT_POSITION_TAUNT3,
+		12,	// LOADOUT_POSITION_TAUNT4,
+		13,	// LOADOUT_POSITION_TAUNT5,
+		14,	// LOADOUT_POSITION_TAUNT6,
+		15,	// LOADOUT_POSITION_TAUNT7,
+		16,	// LOADOUT_POSITION_TAUNT8,
+
+	}
+};
+
 const LoadoutPanelPositioningInstance *g_VisibleLoadoutSlotsPerClass[] =
 {
 	&g_DefaultLoadoutPanelPositioning,			// TF_CLASS_UNDEFINED
@@ -190,6 +216,9 @@ const LoadoutPanelPositioningInstance *g_VisibleLoadoutSlotsPerClass[] =
 	&g_DefaultLoadoutPanelPositioning,			// TF_CLASS_PYRO
 	&g_LoadoutPanelPositioning_Spy,				// TF_CLASS_SPY
 	&g_LoadoutPanelPositioning_Engineer,		// TF_CLASS_ENGINEER
+#ifdef TF_SP
+	&g_LoadoutPanelPositioning_Loxi,			// TF_CLASS_LOXI
+#endif
 };
 
 COMPILE_TIME_ASSERT( ARRAYSIZE( g_VisibleLoadoutSlotsPerClass ) == TF_LAST_NORMAL_CLASS );

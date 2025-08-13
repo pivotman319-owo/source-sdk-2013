@@ -724,6 +724,8 @@ enum kill_eater_event_t
 	kKillEaterEvent_PowerupBottlesUsed,
 	kKillEaterEvent_ContractPointsEarned, // = 110
 	kKillEaterEvent_ContractPointsContributedToFriends,
+	kKillEaterEvent_LoxiKill,
+	kKillEaterEvent_RobotLoxiKill,
 
 	// NEW ENTRIES MUST BE ADDED AT THE BOTTOM
 };

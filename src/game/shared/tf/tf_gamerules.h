@@ -676,6 +676,7 @@ bool IsCreepWaveMode( void ) const;
 // [msmith]	Training Status. And HUD type.
 //=============================================================================
 	bool IsInTraining( void ){ return m_bIsInTraining; }
+	bool IsInSingleplayerMode( void ){ return m_bSingleplayer; }
 	bool AllowTrainingAchievements() { return m_bAllowTrainingAchievements; }
 	void SetAllowTrainingAchievements( bool bAllow) { m_bAllowTrainingAchievements = bAllow; }
 	bool IsWaitingForTrainingContinue() { return m_bIsWaitingForTrainingContinue; }
@@ -1159,6 +1160,7 @@ private:
 //=============================================================================
 	CNetworkVar( int, m_nHudType ); // Used by map authors to override the default HUD clients are showing
 	CNetworkVar( bool, m_bIsInTraining );
+	CNetworkVar( bool, m_bSingleplayer );
 	CNetworkVar( bool, m_bAllowTrainingAchievements );
 	CNetworkVar( bool, m_bIsWaitingForTrainingContinue );
 //=============================================================================

@@ -29,7 +29,7 @@
 
 using namespace vgui;
 
-#define CLASS_COUNT_IMAGES	11
+#define CLASS_COUNT_IMAGES	12
 
 class CTFClassTipsPanel;
 

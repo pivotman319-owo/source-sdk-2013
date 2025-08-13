@@ -32,6 +32,7 @@ enum
 {
 	TF_TEAM_RED = LAST_SHARED_TEAM+1,
 	TF_TEAM_BLUE,
+	TF_TEAM_OUTOFTIME,
 	TF_TEAM_COUNT
 };
 
@@ -46,8 +47,9 @@ enum
 
 #define TF_TEAM_HALLOWEEN	TF_TEAM_AUTOASSIGN
 
-#define TF_TEAM_PVE_INVADERS	TF_TEAM_BLUE		// invading bot team in mann vs machine
-#define TF_TEAM_PVE_DEFENDERS	TF_TEAM_RED			// defending player team in mann vs machine
+#define TF_TEAM_PVE_INVADERS		TF_TEAM_BLUE		// invading bot team in mann vs machine
+#define TF_TEAM_PVE_DEFENDERS		TF_TEAM_RED			// defending player team in mann vs machine
+#define TF_TEAM_PVE_DEFENDERS_SP	TF_TEAM_OUTOFTIME	// defending player team in SP mode
 
 #define TF_TEAM_PVE_INVADERS_GIANTS 4				// hack for replacing visuals via itemdef
 
@@ -59,6 +61,7 @@ extern color32 g_aTeamColors[TF_TEAM_COUNT];
 #define COLOR_TF_BLUE		Color( 79, 117, 143, 255 )
 
 #define CONTENTS_REDTEAM	CONTENTS_TEAM1
+#define CONTENTS_SP_TEAM	CONTENTS_TEAM1
 #define CONTENTS_BLUETEAM	CONTENTS_TEAM2
 
 enum 
@@ -95,6 +98,9 @@ inline int GetEnemyTeam( int team )
 	if ( team == TF_TEAM_BLUE )
 		return TF_TEAM_RED;
 
+	if ( team == TF_TEAM_OUTOFTIME )
+		return TF_TEAM_BLUE;
+	
 	// no enemy team
 	return team;
 }
@@ -213,6 +219,9 @@ enum ETFClass
 	TF_CLASS_PYRO,
 	TF_CLASS_SPY,
 	TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+	TF_CLASS_LOXI,		
+#endif
 
 	// Add any new classes after Engineer
 	TF_CLASS_CIVILIAN,		// TF_LAST_NORMAL_CLASS
@@ -285,6 +294,9 @@ enum ETFGameType
 	TF_GAMETYPE_RD,
 	TF_GAMETYPE_PASSTIME,
 	TF_GAMETYPE_PD,
+#ifdef TF_SP
+	TF_GAMETYPE_SP,
+#endif
 
 	//
 	// ADD NEW ITEMS HERE TO AVOID BREAKING DEMOS
@@ -309,6 +321,9 @@ enum
 	TF_HUDTYPE_ESCORT,
 	TF_HUDTYPE_ARENA,
 	TF_HUDTYPE_TRAINING,
+#ifdef TF_SP
+	TF_HUDTYPE_SP,
+#endif
 
 	//
 	// ADD NEW ITEMS HERE TO AVOID BREAKING DEMOS
@@ -514,6 +529,7 @@ enum ETFWeaponType
 	TF_WEAPON_JAR_GAS,
 	TF_WEAPON_GRENADE_JAR_GAS,
 	TF_WEAPON_FLAME_BALL,
+	TF_WEAPON_RAYGUN_SINGLEPLAYER,
 
 
 	//
@@ -633,10 +649,16 @@ extern const char *g_pszDeathCallingCardModels[TF_CALLING_CARD_MODEL_COUNT];
 
 #ifdef TF_CLIENT_DLL
 extern const char *g_pszInvasionMaps[];
+extern const char *g_pszOutOfTimeMaps[];
 bool IsPlayingInvasionMap( void );
+bool IsPlayingSPMap( void );
 
 #define SCOREBOARD_DOMINATION_ICONS		17
+#ifdef TF_SP
+#define SCOREBOARD_CLASS_ICONS			21
+#else // TF_DLL
 #define SCOREBOARD_CLASS_ICONS			19
+#endif
 #define SCOREBOARD_PING_ICONS			6
 
 extern const char *g_pszClassIcons[];

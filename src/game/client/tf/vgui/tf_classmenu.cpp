@@ -490,6 +490,9 @@ CTFClassMenu::CTFClassMenu( IViewPort *pViewPort )
 	m_pClassButtons[TF_CLASS_SNIPER] = new CExImageButton( this, "sniper", "", this );
 	m_pClassButtons[TF_CLASS_ENGINEER] = new CExImageButton( this, "engineer", "", this );
 	m_pClassButtons[TF_CLASS_SPY] = new CExImageButton( this, "spy", "", this );
+#ifdef TF_SP
+	m_pClassButtons[TF_CLASS_LOXI] = new CExImageButton( this, "loxi", "", this );
+#endif
 	m_pClassButtons[TF_CLASS_RANDOM] = new CExImageButton( this, "random", "", this );
 #endif
 
@@ -509,6 +512,9 @@ CTFClassMenu::CTFClassMenu( IViewPort *pViewPort )
 	m_pMvmUpgradeImages[TF_CLASS_SNIPER] = new vgui::ImagePanel( this, "MvMUpgradeImageSniper" );
 	m_pMvmUpgradeImages[TF_CLASS_ENGINEER] = new vgui::ImagePanel( this, "MvMUpgradeImageEngineer" );
 	m_pMvmUpgradeImages[TF_CLASS_SPY] = new vgui::ImagePanel( this, "MvMUpgradeImageSpy" );
+#ifdef TF_SP
+	m_pMvmUpgradeImages[TF_CLASS_LOXI] = new vgui::ImagePanel( this, "MvMUpgradeImageLoxi" );
+#endif
 
 	vgui::ivgui()->AddTickSignal( GetVPanel() );
 }
@@ -541,6 +547,9 @@ void CTFClassMenu::ApplySchemeSettings( IScheme *pScheme )
 		m_pClassHintIcons[TF_CLASS_SPY] = dynamic_cast< CSCHintIcon* >( FindChildByName( "SpyHintIcon" ) );
 		m_pClassHintIcons[TF_CLASS_ENGINEER] = dynamic_cast< CSCHintIcon* >( FindChildByName( "EngineerHintIcon" ) );
 		m_pClassHintIcons[TF_CLASS_SNIPER] = dynamic_cast< CSCHintIcon* >( FindChildByName( "SniperHintIcon" ) );
+#ifdef TF_SP
+		m_pClassHintIcons[TF_CLASS_LOXI] = dynamic_cast< CSCHintIcon* >( FindChildByName( "LoxiHintIcon" ) );
+#endif
 		m_pClassHintIcons[TF_CLASS_RANDOM] = dynamic_cast< CSCHintIcon* >( FindChildByName( "RandomHintIcon" ) );
 
 		for ( int i = 0; i < TF_CLASS_MENU_BUTTONS; i++ )
@@ -693,6 +702,9 @@ const char *g_pszLegacyClassSelectVCDWeapons[TF_LAST_NORMAL_CLASS] =
 	"tf_weapon_flamethrower",				// TF_CLASS_PYRO,
 	"",										// TF_CLASS_SPY,				// weapons handled individually
 	"tf_weapon_wrench",						// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+	"tf_weapon_raygun_singleplayer",		// TF_CLASS_LOXI,		
+#endif
 };
 
 int g_iLegacyClassSelectWeaponSlots[TF_LAST_NORMAL_CLASS] =
@@ -707,6 +719,9 @@ int g_iLegacyClassSelectWeaponSlots[TF_LAST_NORMAL_CLASS] =
 	LOADOUT_POSITION_PRIMARY,		// TF_CLASS_PYRO,
 	LOADOUT_POSITION_MELEE,			// TF_CLASS_SPY,
 	LOADOUT_POSITION_MELEE,			// TF_CLASS_ENGINEER,		
+#ifdef TF_SP
+	LOADOUT_POSITION_PRIMARY,		// TF_CLASS_LOXI,		
+#endif
 };
 
 //-----------------------------------------------------------------------------
@@ -1351,6 +1366,9 @@ static const char *g_sDialogVariables[] = {
 	"numMedic",
 	"numSniper",
 	"numSpy",
+#ifdef TF_SP
+	"numLoxi",
+#endif
 	"",
 };
 
@@ -1367,6 +1385,9 @@ static const char *g_sClassImagesBlue[] = {
 	"class_sel_sm_medic_blu",
 	"class_sel_sm_sniper_blu",
 	"class_sel_sm_spy_blu",
+#ifdef TF_SP
+	"class_sel_sm_loxi_blu",
+#endif
 
 	"class_sel_sm_scout_blu",
 };
@@ -1384,6 +1405,9 @@ static const char *g_sClassImagesRed[] = {
 	"class_sel_sm_medic_red",
 	"class_sel_sm_sniper_red",
 	"class_sel_sm_spy_red",
+#ifdef TF_SP
+	"class_sel_sm_loxi_red",
+#endif
 
 	"class_sel_sm_scout_red",
 };
@@ -1401,6 +1425,9 @@ int g_ClassDefinesRemap[] = {
 	TF_CLASS_MEDIC,
 	TF_CLASS_SNIPER,
 	TF_CLASS_SPY,
+#ifdef TF_SP
+	TF_CLASS_LOXI,
+#endif
 	TF_CLASS_CIVILIAN,
 };
 

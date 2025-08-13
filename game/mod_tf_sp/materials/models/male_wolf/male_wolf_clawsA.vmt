@@ -1,0 +1,47 @@
+"VertexLitGeneric"
+{
+	"$basetexture" "models/male_wolf/male_wolf_clawsA"
+	"$bumpmap" "models/male_wolf/male_wolf_clawsA_n"
+	
+	// tf2 shading (hvyweapon_red.vmt)
+	"$lightwarptexture" "models/player/shared/pyro_lightwarp_high"
+	"$phongfresnelranges"	"[.3 1 8]"
+	"$halflambert" "0"
+
+	"$phong" "1"
+	"$phongexponent" "12"
+	"$phongboost" "1"
+	"$phongalbedotint" "1"
+	// "$phongtint" "[1 .95 .95]"
+	// "$phongfresnelranges"	"[0.5 6 15]"
+	
+	"$colortint_base" "{62 62 62}"  
+	"$colortint_tmp" "[0 0 0]" 
+	
+	// SFM AO
+	"$ambientocclusion" "1"
+	
+	// $envmap				env_cubemap
+	// $envmaptint			"[0.002 0.002 0.002]"
+	
+	"Proxies"
+	{
+  		"ItemTintColor"
+  		{
+   			"resultVar" "$colortint_tmp"
+  		}
+  		"SelectFirstIfNonZero"
+  		{
+   			"srcVar1" "$colortint_tmp"
+   			"srcVar2" "$colortint_base"
+   			"resultVar" "$color2"
+  		}
+		"Multiply"
+		{
+			"srcVar1" "$color2"
+			"srcVar2" "$yellow"
+			"resultVar" "$color2"
+		}		
+	}
+
+}

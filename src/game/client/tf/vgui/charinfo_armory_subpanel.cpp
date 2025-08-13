@@ -42,6 +42,9 @@ const char *g_szArmoryFilterStrings[ARMFILT_TOTAL] =
 	"#ArmoryFilter_Pyro",			// ARMFILT_CLASS_PYRO,
 	"#ArmoryFilter_Spy",			// ARMFILT_CLASS_SPY,
 	"#ArmoryFilter_Engineer",		// ARMFILT_CLASS_ENGINEER,
+#ifdef TF_SP
+	"#ArmoryFilter_Loxi",		// ARMFILT_CLASS_LOXI,
+#endif
 	"#ArmoryFilter_Donationitems",	// ARMFILT_DONATIONITEMS,
 
 	"",								// ARMFILT_NUM_IN_DROPDOWN
@@ -606,6 +609,9 @@ bool CArmoryPanel::DefPassesFilter( const CTFItemDefinition *pDef, armory_filter
 	case ARMFILT_CLASS_PYRO:
 	case ARMFILT_CLASS_SPY:
 	case ARMFILT_CLASS_ENGINEER:
+#ifdef TF_SP
+	case ARMFILT_CLASS_LOXI:
+#endif
 		{
 			// Don't show class/slot usage for class/slot tokens
 			if ( pDef->GetItemClass() && !V_strcmp( pDef->GetItemClass(), "class_token" ) )

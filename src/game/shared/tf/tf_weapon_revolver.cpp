@@ -25,14 +25,26 @@ IMPLEMENT_NETWORKCLASS_ALIASED( TFRevolver, DT_WeaponRevolver )
 BEGIN_NETWORK_TABLE( CTFRevolver, DT_WeaponRevolver )
 END_NETWORK_TABLE()
 
+IMPLEMENT_NETWORKCLASS_ALIASED( TFRevolver_Secondary, DT_WeaponRevolver_Secondary )
+
+BEGIN_NETWORK_TABLE( CTFRevolver_Secondary, DT_WeaponRevolver_Secondary)
+END_NETWORK_TABLE()
+
 #ifdef CLIENT_DLL
 BEGIN_PREDICTION_DATA( CTFRevolver )
+DEFINE_PRED_FIELD( m_flLastAccuracyCheck, FIELD_FLOAT, 0 ),
+END_PREDICTION_DATA()
+
+BEGIN_PREDICTION_DATA( CTFRevolver_Secondary )
 DEFINE_PRED_FIELD( m_flLastAccuracyCheck, FIELD_FLOAT, 0 ),
 END_PREDICTION_DATA()
 #endif
 
 LINK_ENTITY_TO_CLASS( tf_weapon_revolver, CTFRevolver );
 PRECACHE_WEAPON_REGISTER( tf_weapon_revolver );
+
+LINK_ENTITY_TO_CLASS( tf_weapon_revolver_secondary, CTFRevolver_Secondary );
+PRECACHE_WEAPON_REGISTER( tf_weapon_revolver_secondary );
 
 // Server specific.
 #ifndef CLIENT_DLL

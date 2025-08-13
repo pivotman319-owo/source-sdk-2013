@@ -1966,6 +1966,11 @@ void CTFPlayer::RuneRegenThink( void )
 	case TF_CLASS_HEAVYWEAPONS:
 		flAmount = 8;
 		break;
+#ifdef TF_SP
+	case TF_CLASS_LOXI:
+		flAmount = 14;
+		break;
+#endif
 	}
 	if ( nRuneType == RUNE_REGEN )
 	{
@@ -13677,6 +13682,15 @@ void CTFPlayer::StateThinkWELCOME( void )
 			SetDesiredPlayerClassIndex( iClass );
 			ForceRespawn();
 		}
+#ifdef TF_SP
+		else if ( TFGameRules()->IsInSingleplayerMode() )
+		{
+			int iTeam = TFGameRules()->GetAssignedHumanTeam();
+			ChangeTeam( iTeam != TEAM_ANY ? iTeam : TF_TEAM_OUTOFTIME );
+			SetDesiredPlayerClassIndex( TF_CLASS_LOXI );
+			ForceRespawn();
+		}
+#endif
 	}
 }
 

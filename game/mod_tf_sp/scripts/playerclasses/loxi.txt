@@ -1,0 +1,47 @@
+//
+// Team Fortress 2 Singleplayer - Loxi Player Class
+//
+PlayerClass
+{
+	// Attributes.
+	"name"			"loxi"
+	"model"			"models/male_wolf/male_wolf_loxi_oot.mdl"
+	"model_hwm"		"models/male_wolf/male_wolf_loxi_oot.mdl"
+	"model_hands"		"models/weapons/c_models/c_engineer_gunslinger.mdl"
+	"localize_name"		"TF_Class_Name_OutOfTime"
+	"speed_max"		"325"
+	"health_max"		"200"
+	"armor_max"		"100"
+
+	// Grenades.
+
+	// Weapons.
+	"weapon1"		"TF_WEAPON_RAYGUN_SINGLEPLAYER"
+	"weapon2"		"TF_WEAPON_SHOTGUN_HWG"
+	"weapon3"		"TF_WEAPON_FISTS"
+
+	// Buildables
+	"buildable1"	"OBJ_SENTRYGUN"
+	"buildable2"	"OBJ_DISPENSER"
+	"buildable3"	"OBJ_TELEPORTER"
+
+	//Thirdperson
+	"cameraoffset_forward"	"85"
+	"cameraoffset_right"	"25"
+	"cameraoffset_up"	"0"
+	
+	AmmoMax
+	{
+		"tf_ammo_primary"	"200"
+		"tf_ammo_secondary"	"64"
+		"tf_ammo_metal"		"300"
+		"tf_ammo_grenades1"	"2"
+		"tf_ammo_grenades2"	"2"
+	}	
+
+	// Death Sounds
+	"sound_death"				"Civilian.Death"
+	"sound_crit_death"			"Civilian.CritDeath"
+	"sound_melee_death"			"Civilian.MeleeDeath"
+	"sound_explosion_death"			"Civilian.ExplosionDeath"	
+}

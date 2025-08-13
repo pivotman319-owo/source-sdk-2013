@@ -1,0 +1,1 @@
+mod_tf_sp_win64 -w 1920 -h 1080 -sw -noborder -dev +developer 2 +maxplayers 2 +host_thread_mode 2
