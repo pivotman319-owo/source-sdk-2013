@@ -20,6 +20,7 @@ $Project "client"
 	"game\client\client_episodic.vpc"	[$EPISODIC]
 	"game\client\client_tf.vpc"			[$TF]
 	"game\client\client_hl2mp.vpc"		[$HL2MP]
+	"game\client\client_sdk.vpc"		[$SDK]
 }
 
 $Project "fgdlib"
@@ -33,6 +34,7 @@ $Project "game_shader_generic_example"
 	"materialsystem\stdshaders\game_shader_generic_example_lostcoast.vpc" [$LOSTCOAST]
 	"materialsystem\stdshaders\game_shader_generic_example_episodic.vpc" [$EPISODIC]
 	"materialsystem\stdshaders\game_shader_generic_example_hl2mp.vpc" [$HL2MP]
+	"materialsystem\stdshaders\game_shader_generic_example_sdk.vpc" [$SDK]
 	"materialsystem\stdshaders\game_shader_generic_example_tf.vpc" [$TF]
 }
 
@@ -44,6 +46,7 @@ $Project "game_shader_generic_std"
 	"materialsystem\stdshaders\game_shader_generic_std_lostcoast.vpc" [$LOSTCOAST]
 	"materialsystem\stdshaders\game_shader_generic_std_episodic.vpc" [$EPISODIC]
 	"materialsystem\stdshaders\game_shader_generic_std_hl2mp.vpc" [$HL2MP]
+	"materialsystem\stdshaders\game_shader_generic_std_sdk.vpc" [$SDK]
 	"materialsystem\stdshaders\game_shader_generic_std_tf.vpc" [$TF]
 }
 
@@ -64,6 +67,7 @@ $Project "server"
 	"game\server\server_episodic.vpc"	[$EPISODIC]
 	"game\server\server_tf.vpc"			[$TF]
 	"game\server\server_hl2mp.vpc"		[$HL2MP]
+	"game\server\server_sdk.vpc"		[$SDK]
 }
 
 $Project "launcher_main"
@@ -72,6 +76,7 @@ $Project "launcher_main"
 	"launcher_main\launcher_main_mod_lostcoast.vpc" [$LOSTCOAST]
 	"launcher_main\launcher_main_mod_episodic.vpc" [$EPISODIC]
 	"launcher_main\launcher_main_mod_hl2mp.vpc" [$HL2MP]
+	"launcher_main\launcher_main_mod_sdk.vpc" [$SDK]
 	"launcher_main\launcher_main_mod_tf.vpc" [$TF]
 }
 
