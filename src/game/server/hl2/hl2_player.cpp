@@ -46,6 +46,7 @@
 #include "gamestats.h"
 #include "filters.h"
 #include "tier0/icommandline.h"
+#include "weapon_stunstick_player.h"
 
 #ifdef HL2_EPISODIC
 #include "npc_alyx_episodic.h"
@@ -104,6 +105,8 @@ ConVar sv_infinite_aux_power( "sv_infinite_aux_power", "0", FCVAR_CHEAT );
 ConVar autoaim_unlock_target( "autoaim_unlock_target", "0.8666" );
 
 ConVar sv_stickysprint("sv_stickysprint", "0", FCVAR_ARCHIVE | FCVAR_ARCHIVE_XBOX);
+
+ConVar stunstick_pickupable("stunstick_pickupable", "0", FCVAR_CHEAT);
 
 #define	FLASH_DRAIN_TIME	 1.1111	// 100 units / 90 secs
 #define	FLASH_CHARGE_TIME	 50.0f	// 100 units / 2 secs
@@ -2667,8 +2670,21 @@ bool CHL2_Player::Weapon_CanUse( CBaseCombatWeapon *pWeapon )
 #ifndef HL2MP	
 	if ( pWeapon->ClassMatches( "weapon_stunstick" ) )
 	{
-		if ( ApplyBattery( 0.5 ) )
+		if ( stunstick_pickupable.GetBool() == false )
+		{
+			if ( ApplyBattery( 0.5 ) )
+				UTIL_Remove( pWeapon );
+		}
+		else if ( stunstick_pickupable.GetBool() == true )
+		{
+			// Grant the player an equippable stunstick and delete the old stunstick ent.
+			// Must be ported from HL2DM to work!
 			UTIL_Remove( pWeapon );
+			GiveNamedItem( "weapon_stunstick_player" );
+		}
+
+		// Return false if we're touching a stunstick. We're either giving them half a suit battery
+		// or a player-equippable version of said weapon, whatever comes first.
 		return false;
 	}
 #endif

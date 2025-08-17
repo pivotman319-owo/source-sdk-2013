@@ -178,6 +178,9 @@ void CBaseHLBludgeonWeapon::Hit( trace_t &traceHit, Activity nHitActivity, bool 
 
 	// Apply an impact effect
 	ImpactEffect( traceHit );
+	
+	// Play a hit sound.
+	WeaponSound( MELEE_HIT );
 }
 
 Activity CBaseHLBludgeonWeapon::ChooseIntersectionPointAndActivity( trace_t &hitTrace, const Vector &mins, const Vector &maxs, CBasePlayer *pOwner )
@@ -354,6 +357,9 @@ void CBaseHLBludgeonWeapon::Swing( int bIsSecondary )
 
 	gamestats->Event_WeaponFired( pOwner, !bIsSecondary, GetClassname() );
 
+	// Play swing sound
+	WeaponSound( SINGLE );
+
 	// -------------------------
 	//	Miss
 	// -------------------------
@@ -378,7 +384,4 @@ void CBaseHLBludgeonWeapon::Swing( int bIsSecondary )
 	//Setup our next attack times
 	m_flNextPrimaryAttack = gpGlobals->curtime + GetFireRate();
 	m_flNextSecondaryAttack = gpGlobals->curtime + SequenceDuration();
-
-	//Play swing sound
-	WeaponSound( SINGLE );
 }
