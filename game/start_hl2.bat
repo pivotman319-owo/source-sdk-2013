@@ -1,0 +1,1 @@
+mod_hl2_win64 -w 1920 -h 1080 -sw -noborder +sv_cheats 1 +developer 2
