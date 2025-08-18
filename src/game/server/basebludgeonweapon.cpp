@@ -174,13 +174,17 @@ void CBaseHLBludgeonWeapon::Hit( trace_t &traceHit, Activity nHitActivity, bool 
 		{
 			gamestats->Event_WeaponHit( pPlayer, !bIsSecondary, GetClassname(), info );
 		}
+
+		// Play hit sound
+		WeaponSound( MELEE_HIT );
+	}
+	else {
+		// Play hit world sound
+		WeaponSound( MELEE_HIT_WORLD );
 	}
 
 	// Apply an impact effect
 	ImpactEffect( traceHit );
-	
-	// Play a hit sound.
-	WeaponSound( MELEE_HIT );
 }
 
 Activity CBaseHLBludgeonWeapon::ChooseIntersectionPointAndActivity( trace_t &hitTrace, const Vector &mins, const Vector &maxs, CBasePlayer *pOwner )
