@@ -357,8 +357,7 @@ void CBaseHLBludgeonWeapon::Swing( int bIsSecondary )
 
 	gamestats->Event_WeaponFired( pOwner, !bIsSecondary, GetClassname() );
 
-	// Play swing sound
-	WeaponSound( SINGLE );
+
 
 	// -------------------------
 	//	Miss
@@ -366,6 +365,9 @@ void CBaseHLBludgeonWeapon::Swing( int bIsSecondary )
 	if ( traceHit.fraction == 1.0f )
 	{
 		nHitActivity = bIsSecondary ? ACT_VM_MISSCENTER2 : ACT_VM_MISSCENTER;
+		
+		// Play swing sound
+		WeaponSound( SINGLE );
 
 		// We want to test the first swing again
 		Vector testEnd = swingStart + forward * GetRange();
