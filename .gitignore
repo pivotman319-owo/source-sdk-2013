@@ -64,6 +64,8 @@ game/platform/config/*.vdf
 game/*/save/quick*.tga
 game/*_win64.exe
 game/steam_appid.txt
+game/mod_tf/media/*.res
+game/mod_tf/scripts/items/items_game.txt
 
 # shader files
 *.tmp
@@ -516,3 +518,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
