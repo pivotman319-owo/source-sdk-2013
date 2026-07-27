@@ -155,13 +155,21 @@ public:
 	float GetMaxEnginePower();
 
 	// INPCInteractive Functions
-	virtual bool	CanInteractWith( CAI_BaseNPC *pUser ) { return false; } // Disabled for now (sjb)
+	virtual bool	CanInteractWith( CAI_BaseNPC *pUser ) { return true; } // Disabled for now (sjb)
 	virtual	bool	HasBeenInteractedWith()	{ return m_bHackedByAlyx; }
 	virtual void	NotifyInteraction( CAI_BaseNPC *pUser )
 	{
 		// Turn the sprites off and on again so their colors will change.
 		KillSprites(0.0f);
-		m_bHackedByAlyx = true; 
+		
+		// For now, turn green so we can tell who is hacked.
+		m_bHackedByAlyx = true;
+		
+		// Manhacks get 30 seconds worth of free knowledge.
+		GetEnemies()->SetFreeKnowledgeDuration( 30.0 );
+		
+		// Play the hax0red sound
+		EmitSound( "NPC_RollerMine.Reprogram" );
 		StartEye();
 	}
 
