@@ -940,21 +940,13 @@ void CPhysHinge::Activate( void )
 	m_soundInfo.OnActivate(this);
 	if (m_pConstraint)
 	{
-		if (
-				m_soundInfo.m_iszTravelSoundFwd != NULL_STRING ||
-				m_soundInfo.m_iszTravelSoundBack != NULL_STRING ||
-				m_soundInfo.m_pTravelSound != nullptr ||
-				m_pConstraint->GetAttachedObject() != nullptr
-			)
-		{
-			m_soundInfo.StartThinking(this, 
-				VelocitySampler::GetRelativeAngularVelocity(m_pConstraint->GetAttachedObject(), m_pConstraint->GetReferenceObject()) ,
-				m_hinge.worldAxisDirection
+		m_soundInfo.StartThinking(this, 
+			VelocitySampler::GetRelativeAngularVelocity(m_pConstraint->GetAttachedObject(), m_pConstraint->GetReferenceObject()) ,
+			m_hinge.worldAxisDirection
 			);
 
-			SetThink(&CPhysHinge::SoundThink);
-			SetNextThink( gpGlobals->curtime + m_soundInfo.getThinkRate() );
-		}
+		SetThink(&CPhysHinge::SoundThink);
+		SetNextThink( gpGlobals->curtime + m_soundInfo.getThinkRate() );
 	}
 }
 
@@ -1282,24 +1274,13 @@ void CPhysSlideConstraint::Activate( void )
 	Vector axisDirection = m_axisEnd - GetAbsOrigin();
 	VectorNormalize( axisDirection );
 	UTIL_SnapDirectionToAxis( axisDirection );
-	if ( m_pConstraint )
-	{
-		if (
-			m_soundInfo.m_iszTravelSoundFwd != NULL_STRING ||
-			m_soundInfo.m_iszTravelSoundBack != NULL_STRING ||
-			m_soundInfo.m_pTravelSound != nullptr ||
-			m_pConstraint->GetReferenceObject() != nullptr
-			)
-		{
-			m_soundInfo.StartThinking(this,
-				VelocitySampler::GetRelativeVelocity(m_pConstraint->GetAttachedObject(), m_pConstraint->GetReferenceObject()),
-				axisDirection
-			);
+	m_soundInfo.StartThinking(this, 
+		VelocitySampler::GetRelativeVelocity(m_pConstraint->GetAttachedObject(), m_pConstraint->GetReferenceObject()),
+		axisDirection
+		);
 
-			SetThink(&CPhysSlideConstraint::SoundThink);
-			SetNextThink(gpGlobals->curtime + m_soundInfo.getThinkRate());
-		}
-	}
+	SetThink(&CPhysSlideConstraint::SoundThink);
+	SetNextThink(gpGlobals->curtime + m_soundInfo.getThinkRate());
 }
 
 void CPhysSlideConstraint::Precache()
