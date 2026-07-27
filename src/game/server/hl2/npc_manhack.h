@@ -165,9 +165,6 @@ public:
 		// For now, turn green so we can tell who is hacked.
 		m_bHackedByAlyx = true;
 		
-		// Manhacks get 30 seconds worth of free knowledge.
-		GetEnemies()->SetFreeKnowledgeDuration( 30.0 );
-		
 		// Play the hax0red sound
 		EmitSound( "NPC_RollerMine.Reprogram" );
 		StartEye();
