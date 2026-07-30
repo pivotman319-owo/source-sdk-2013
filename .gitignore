@@ -62,6 +62,7 @@ game/*/[Gg]ame[Ss]tate.txt
 game/*/maps/graphs/*.ain
 game/platform/config/*.vdf
 game/*/save/quick*.tga
+game/*/save/half-life-*.tga
 game/*_win64.exe
 game/steam_appid.txt
 game/mod_tf/media/*.res
@@ -518,4 +519,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-
